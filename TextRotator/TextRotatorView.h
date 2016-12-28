@@ -10,4 +10,5 @@
 
 @interface TextRotatorView : UIView
 @property (assign, nonatomic) CGFloat angle;
+@property (assign, nonatomic) CGPoint textRectCenter;
 @end

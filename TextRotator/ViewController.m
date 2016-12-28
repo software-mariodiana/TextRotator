@@ -19,6 +19,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 
@@ -32,8 +33,9 @@
 - (IBAction)tap:(id)sender
 {
     UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
-    CGPoint location = [tap locationInView:[self view]];
-    NSLog(@"## Tapped!: (%f, %f)", location.x, location.y);
+    TextRotatorView *view = (TextRotatorView *)[self view];
+    CGPoint location = [tap locationInView:view];
+    [view setTextRectCenter:location];
 }
 
 

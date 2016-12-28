@@ -8,7 +8,16 @@
 
 #import "TextRotatorView.h"
 
+@interface TextRotatorView ()
+{
+    BOOL _initialDraw;
+}
+
+@end
+
 @implementation TextRotatorView
+
+@synthesize textRectCenter = _textRectCenter;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -16,18 +25,17 @@
     
     if (self) {
         _angle = 0.0f;
+        _textRectCenter = CGPointMake(-1, -1);
+        _initialDraw = YES;
     }
     
     return self;
 }
 
+
 - (void)drawRect:(CGRect)rect
 {
-    CGRect bounds = [self bounds];
-    
-    CGPoint center;
-    center.x = bounds.origin.x + bounds.size.width / 2;
-    center.y = bounds.origin.y + bounds.size.height / 2;
+    CGPoint center = [self textRectCenter];
     
     NSString *text = @"Hello, World!";
     UIFont *font = [UIFont boldSystemFontOfSize:18];
@@ -62,9 +70,34 @@
     CGContextRestoreGState(context);
 }
 
+
 - (void)setAngle:(CGFloat)angle
 {
     _angle = angle;
+    [self setNeedsDisplay];
+}
+
+
+- (CGPoint)textRectCenter
+{
+    if (_initialDraw) {
+        CGRect bounds = [self bounds];
+        
+        CGPoint center;
+        center.x = bounds.origin.x + bounds.size.width / 2;
+        center.y = bounds.origin.y + bounds.size.height / 2;
+        
+        _textRectCenter = center;
+        _initialDraw = NO;
+    }
+    
+    return _textRectCenter;
+}
+
+
+- (void)setTextRectCenter:(CGPoint)textRectCenter
+{
+    _textRectCenter = textRectCenter;
     [self setNeedsDisplay];
 }
 
