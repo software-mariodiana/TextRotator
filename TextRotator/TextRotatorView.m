@@ -13,6 +13,11 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
+    
+    if (self) {
+        _angle = 0.0f;
+    }
+    
     return self;
 }
 
@@ -43,7 +48,24 @@
     
     [[UIColor blackColor] setFill];
     
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(context);
+    
+    CGAffineTransform transform = CGAffineTransformMakeTranslation(center.x, center.y);
+    transform = CGAffineTransformRotate(transform, ([self angle] * M_PI) / 180.0f);
+    transform = CGAffineTransformTranslate(transform, -center.x, -center.y);
+    
+    CGContextConcatCTM(context, transform);
+    
     [text drawInRect:textRect withAttributes:attributes];
+        
+    CGContextRestoreGState(context);
+}
+
+- (void)setAngle:(CGFloat)angle
+{
+    _angle = angle;
+    [self setNeedsDisplay];
 }
 
 @end

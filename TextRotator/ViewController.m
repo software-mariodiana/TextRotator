@@ -15,21 +15,17 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-
-- (TextRotatorView *)view
-{
-    return (TextRotatorView *)[super view];
 }
 
 
@@ -44,7 +40,9 @@
 - (IBAction)rotate:(id)sender
 {
     UISlider *slider = (UISlider *)sender;
-    NSLog(@"## Slider value: %f", floorf(slider.value));
+    CGFloat degrees = floorf(slider.value);
+    TextRotatorView *view = (TextRotatorView *)[self view];
+    [view setAngle:degrees];
 }
 
 

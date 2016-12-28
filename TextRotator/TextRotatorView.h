@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface TextRotatorView : UIView
-
+@property (assign, nonatomic) CGFloat angle;
 @end
