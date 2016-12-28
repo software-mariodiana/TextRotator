@@ -7,9 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "TextRotatorView.h"
 
-@interface ViewController ()
-
+@interface ViewController () <UIGestureRecognizerDelegate>
+@property (weak, nonatomic) IBOutlet UISlider *slider;
 @end
 
 @implementation ViewController
@@ -25,5 +26,39 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+- (TextRotatorView *)view
+{
+    return (TextRotatorView *)[super view];
+}
+
+
+- (IBAction)tap:(id)sender
+{
+    UITapGestureRecognizer *tap = (UITapGestureRecognizer *)sender;
+    CGPoint location = [tap locationInView:[self view]];
+    NSLog(@"## Tapped!: (%f, %f)", location.x, location.y);
+}
+
+
+- (IBAction)rotate:(id)sender
+{
+    UISlider *slider = (UISlider *)sender;
+    NSLog(@"## Slider value: %f", floorf(slider.value));
+}
+
+
+#pragma mark - UIGestureRecognizerDelegate methods
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer
+       shouldReceiveTouch:(UITouch *)touch
+{
+    if ([[touch view] isEqual:[self view]]) {
+        return YES;
+    }
+    
+    // Only the main view itself should respond to touches.
+    return NO;
+}
 
 @end

@@ -14,6 +14,7 @@
 		AC0B7BC31E1347CA0019B6F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC0B7BC21E1347CA0019B6F4 /* Assets.xcassets */; };
 		AC0B7BC61E1347CA0019B6F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC0B7BC41E1347CA0019B6F4 /* LaunchScreen.storyboard */; };
 		AC0B7BD11E1347CA0019B6F4 /* TextRotatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0B7BD01E1347CA0019B6F4 /* TextRotatorTests.m */; };
+		AC0B7BDD1E1348960019B6F4 /* TextRotatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC0B7BDC1E1348960019B6F4 /* TextRotatorView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		AC0B7BCC1E1347CA0019B6F4 /* TextRotatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TextRotatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0B7BD01E1347CA0019B6F4 /* TextRotatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextRotatorTests.m; sourceTree = "<group>"; };
 		AC0B7BD21E1347CA0019B6F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC0B7BDB1E1348960019B6F4 /* TextRotatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextRotatorView.h; sourceTree = "<group>"; };
+		AC0B7BDC1E1348960019B6F4 /* TextRotatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextRotatorView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 			children = (
 				AC0B7BB91E1347CA0019B6F4 /* AppDelegate.h */,
 				AC0B7BBA1E1347CA0019B6F4 /* AppDelegate.m */,
+				AC0B7BDB1E1348960019B6F4 /* TextRotatorView.h */,
+				AC0B7BDC1E1348960019B6F4 /* TextRotatorView.m */,
 				AC0B7BBC1E1347CA0019B6F4 /* ViewController.h */,
 				AC0B7BBD1E1347CA0019B6F4 /* ViewController.m */,
 				AC0B7BBF1E1347CA0019B6F4 /* Main.storyboard */,
@@ -218,6 +223,7 @@
 				AC0B7BBE1E1347CA0019B6F4 /* ViewController.m in Sources */,
 				AC0B7BBB1E1347CA0019B6F4 /* AppDelegate.m in Sources */,
 				AC0B7BB81E1347CA0019B6F4 /* main.m in Sources */,
+				AC0B7BDD1E1348960019B6F4 /* TextRotatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
