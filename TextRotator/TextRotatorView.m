@@ -8,6 +8,7 @@
 
 #import "TextRotatorView.h"
 
+// Value must correspond to that set in Interface Builder.
 static const NSInteger kSliderViewTag = 101;
 
 @interface TextRotatorView ()
@@ -112,19 +113,34 @@ static const NSInteger kSliderViewTag = 101;
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
+    [self resetUI];
+}
+
+
+- (void)resetUI
+{
+    UISlider *slider = [self slider];
+    [slider setValue:0.0 animated:YES];
+    _initialState = YES;
+    [self setAngle:0.0];
+}
+
+
+- (UISlider *)slider
+{
     // Let the view talk directly to its subview, for our convenience.
     NSArray *views = [[self subviews] filteredArrayUsingPredicate:
-                     [NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+                      [NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
         return [object tag] == kSliderViewTag;
     }]];
     
     if ([views count] > 0) {
         UISlider *slider = (UISlider *)[views firstObject];
-        [slider setValue:0.0 animated:YES];
+        return slider;
     }
-    
-    _initialState = YES;
-    [self setAngle:0.0];
+    else {
+        return nil;
+    }
 }
 
 @end
