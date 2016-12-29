@@ -8,9 +8,11 @@
 
 #import "TextRotatorView.h"
 
+static const NSInteger kSliderViewTag = 101;
+
 @interface TextRotatorView ()
 {
-    BOOL _initialDraw;
+    BOOL _initialState;
 }
 
 @end
@@ -26,7 +28,7 @@
     if (self) {
         _angle = 0.0f;
         _textRectCenter = CGPointMake(-1, -1);
-        _initialDraw = YES;
+        _initialState = YES;
     }
     
     return self;
@@ -80,7 +82,7 @@
 
 - (CGPoint)textRectCenter
 {
-    if (_initialDraw) {
+    if (_initialState) {
         CGRect bounds = [self bounds];
         
         CGPoint center;
@@ -88,7 +90,7 @@
         center.y = bounds.origin.y + bounds.size.height / 2;
         
         _textRectCenter = center;
-        _initialDraw = NO;
+        _initialState = NO;
     }
     
     return _textRectCenter;
@@ -99,6 +101,30 @@
 {
     _textRectCenter = textRectCenter;
     [self setNeedsDisplay];
+}
+
+
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    // Let the view talk directly to its subview, for our convenience.
+    NSArray *views = [[self subviews] filteredArrayUsingPredicate:
+                     [NSPredicate predicateWithBlock:^BOOL(id object, NSDictionary *bindings) {
+        return [object tag] == kSliderViewTag;
+    }]];
+    
+    if ([views count] > 0) {
+        UISlider *slider = (UISlider *)[views firstObject];
+        [slider setValue:0.0 animated:YES];
+    }
+    
+    _initialState = YES;
+    [self setAngle:0.0];
 }
 
 @end
