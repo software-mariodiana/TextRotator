@@ -28,10 +28,8 @@ The code is most easily done in the `drawRect:` method of UIView:
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSaveGState(context);
         
-        CGAffineTransform transform = 
-            CGAffineTransformMakeTranslation(center.x, center.y);
-        transform = 
-            CGAffineTransformRotate(transform, ([self angle] * M_PI) / 180.0f);
+        CGAffineTransform transform = CGAffineTransformMakeTranslation(center.x, center.y);
+        transform = CGAffineTransformRotate(transform, ([self angle] * M_PI) / 180.0f);
         transform = CGAffineTransformTranslate(transform, -center.x, -center.y);
         
         CGContextConcatCTM(context, transform);
